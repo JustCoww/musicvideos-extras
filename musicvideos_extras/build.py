@@ -165,7 +165,7 @@ class BuildVideo:
 
         # Download audio if it is a link otherwise copy it to the folder
         if tools.check_if_url(audio):
-            self.url = audio
+            self.url = audio + '\n'
             tools.download_audio(audio, output=self.files['download_audio'])
             self.audio = self.files['download_audio']
         else:
