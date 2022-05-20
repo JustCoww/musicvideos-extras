@@ -4,6 +4,6 @@ Extra things for video creation.
 
 
 # Install
-```sh
+```shell
 pip install musicvideos_extras
 ```
