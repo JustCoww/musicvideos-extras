@@ -212,7 +212,7 @@ class BuildVideo:
         tags = [channel, self.song,
                 f'{self.speed_text.lower()} {self.song}',
                 f'{self.reverb_text.lower()} {self.song}',
-                f'{self.speed_text.lower()} {self.reverb_text} {self.song}']
+                f'{self.speed_text.lower()} {self.reverb_text.lower()} {self.song}']
         title = f'{self.artists[0]} - {self.song} {self.toptext_plus}'
         description = f'{self.song} {self.toptext_and} \n{self.url}\n'
         for i in self.artists:
