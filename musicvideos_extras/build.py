@@ -59,16 +59,18 @@ class BuildVideo:
         self.reverb = int(float(reverb) * 10)
         self.song = song.strip()
         self.song_without_invalid_ascii = self.song
+        # removes all invalid ascii so that it doesn't error out with slashes in folder names
+        # and with ' and " in the ffmpeg command
         invalid_ascii = ['/', '"', "'"]
         for i in invalid_ascii:
-            self.song_without_invalid_ascii = self.song_without_invalid_ascii.replace(i, ' ')
+            self.song_files = self.song_files.replace(i, ' ')
 
         self.files = {
-            'download_cover' : f'cover {self.song_without_invalid_ascii}.png',
-            'download_audio' : f'original {self.song_without_invalid_ascii}.wav',
-            'main_image' : f'image {self.song_without_invalid_ascii}.png',
-            'thumb_image' : f'thumb {self.song_without_invalid_ascii}.png',
-            'video_file' : f'video {self.song_without_invalid_ascii}.mp4',
+            'download_cover' : f'cover {self.song_files}.png',
+            'download_audio' : f'original {self.song_files}.wav',
+            'main_image' : f'image {self.song_files}.png',
+            'thumb_image' : f'thumb {self.song_files}.png',
+            'video_file' : f'video {self.song_files}.mp4',
             'folder' : '',
             'full_folder' : '',
             'mod_audio' : ''
@@ -107,14 +109,14 @@ class BuildVideo:
 
         # Modified audio filename and folder name
         if speed_text != '': 
-            self.files['mod_audio'] = f'{speed_text.lower()} {self.song_without_invalid_ascii}.wav'
-            self.files['folder'] = f'{speed_text.lower()} {self.song_without_invalid_ascii}'
+            self.files['mod_audio'] = f'{speed_text.lower()} {self.song_files}.wav'
+            self.files['folder'] = f'{speed_text.lower()} {self.song_files}'
         elif reverb_text != '':
-            self.files['mod_audio'] = f'{reverb_text.lower()} {self.song_without_invalid_ascii}.wav'
-            self.files['folder'] = f'{reverb_text.lower()} {self.song_without_invalid_ascii}'
+            self.files['mod_audio'] = f'{reverb_text.lower()} {self.song_files}.wav'
+            self.files['folder'] = f'{reverb_text.lower()} {self.song_files}'
         else:
-            self.files['mod_audio'] = f'monkaS?? {self.song_without_invalid_ascii}.wav'
-            self.files['folder'] = f'monkaS?? {self.song_without_invalid_ascii}'
+            self.files['mod_audio'] = f'monkaS?? {self.song_files}.wav'
+            self.files['folder'] = f'monkaS?? {self.song_files}'
 
         # Setup the full path folder directory variable (for the youtube upload)
         self.files['full_folder'] = f'{self.orig_dir}/{self.files["folder"]}'
