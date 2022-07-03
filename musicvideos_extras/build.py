@@ -58,10 +58,10 @@ class BuildVideo:
         self.speed = int(speed)
         self.reverb = int(float(reverb) * 10)
         self.song = song.strip()
-        self.song_without_invalid_ascii = self.song
         # removes all invalid ascii so that it doesn't error out with slashes in folder names
         # and with ' and " in the ffmpeg command
         invalid_ascii = ['/', '"', "'"]
+        self.song_files = self.song
         for i in invalid_ascii:
             self.song_files = self.song_files.replace(i, ' ')
 
