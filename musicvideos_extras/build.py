@@ -189,8 +189,7 @@ class BuildVideo:
 
 
     def custom_toptext(self, text):
-        self.toptext_and = f'({text})'
-        self.toptext_plus = f'({text})'
+        self.toptext_and = self.toptext_plus = text
 
     def export_images(self):
         video_images = images.VideoImages(cover=self.cover)
