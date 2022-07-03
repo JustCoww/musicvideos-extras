@@ -58,13 +58,17 @@ class BuildVideo:
         self.speed = int(speed)
         self.reverb = int(float(reverb) * 10)
         self.song = song.strip()
+        self.song_without_invalid_ascii = self.song
+        invalid_ascii = ['/', '"', "'"]
+        for i in invalid_ascii:
+            self.song_without_invalid_ascii = self.song_without_invalid_ascii.replace(i, ' ')
 
         self.files = {
-            'download_cover' : f'cover {song}.png',
-            'download_audio' : f'original {song}.wav',
-            'main_image' : f'image {song}.png',
-            'thumb_image' : f'thumb {song}.png',
-            'video_file' : f'video {song}.mp4',
+            'download_cover' : f'cover {self.song_without_invalid_ascii}.png',
+            'download_audio' : f'original {self.song_without_invalid_ascii}.wav',
+            'main_image' : f'image {self.song_without_invalid_ascii}.png',
+            'thumb_image' : f'thumb {self.song_without_invalid_ascii}.png',
+            'video_file' : f'video {self.song_without_invalid_ascii}.mp4',
             'folder' : '',
             'full_folder' : '',
             'mod_audio' : ''
@@ -102,15 +106,15 @@ class BuildVideo:
         self.reverb_text = reverb_text
 
         # Modified audio filename and folder name
-        if speed_text != '':
-            self.files['mod_audio'] = f'{speed_text.lower()} {song}.wav'
-            self.files['folder'] = f'{speed_text.lower()} {song}'
+        if speed_text != '': 
+            self.files['mod_audio'] = f'{speed_text.lower()} {self.song_without_invalid_ascii}.wav'
+            self.files['folder'] = f'{speed_text.lower()} {self.song_without_invalid_ascii}'
         elif reverb_text != '':
-            self.files['mod_audio'] = f'{reverb_text.lower()} {song}.wav'
-            self.files['folder'] = f'{reverb_text.lower()} {song}'
+            self.files['mod_audio'] = f'{reverb_text.lower()} {self.song_without_invalid_ascii}.wav'
+            self.files['folder'] = f'{reverb_text.lower()} {self.song_without_invalid_ascii}'
         else:
-            self.files['mod_audio'] = f'monkaS?? {song}.wav'
-            self.files['folder'] = f'monkaS?? {song}'
+            self.files['mod_audio'] = f'monkaS?? {self.song_without_invalid_ascii}.wav'
+            self.files['folder'] = f'monkaS?? {self.song_without_invalid_ascii}'
 
         # Setup the full path folder directory variable (for the youtube upload)
         self.files['full_folder'] = f'{self.orig_dir}/{self.files["folder"]}'
