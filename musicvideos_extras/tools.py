@@ -23,7 +23,9 @@ def download_audio(url, output='downloaded_audio.wav'):
     an audio file from the url defined in the arguments
     and convert it to .wav format
     '''
-
+    # remove any playlist from youtube link
+    if 'https://www.youtube.com/' in url: url = url[:url.find('&list')]
+    elif 'https://youtu.be' in url: url = url[:url.find('?list')]
     ytdl_opts = { 'format': 'bestaudio/best', 'outtmpl':output, 'postprocessors':[{'key': 'FFmpegExtractAudio','preferredcodec': 'wav'}] }
     YoutubeDL(ytdl_opts).download([url])
     return output
