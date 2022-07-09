@@ -212,9 +212,9 @@ class BuildVideo:
                     output=self.files['video_file'])
         print('\033[92m✔ Finished export_video process\033[0m')
 
-    def upload_youtube(self, channel='justcow', client_secrets='client_secrets.json'):
+    def upload_youtube(self, client_secrets='client_secrets.json'):
         os.chdir(self.orig_dir)
-        tags = [channel, self.song,
+        tags = [self.song,
                 f'{self.speed_text.lower()} {self.song}',
                 f'{self.reverb_text.lower()} {self.song}',
                 f'{self.speed_text.lower()} {self.reverb_text.lower()} {self.song}']
