@@ -12,7 +12,7 @@ setup(
     description=DESCRIPTION,
     packages=find_packages(),
     install_requires=['musicvideos', 'moviepy', 'yt_dlp', 'requests', 'oauth2client', 'google-api-python-client', 'google-auth-oauthlib', 'google-auth-httplib2'],
-    keywords=['python', 'musicvideos', 'extras', 'youtube', 'justcow'],
+    keywords=['python', 'musicvideos', 'extras', 'youtube'],
     include_package_data=True ,
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
